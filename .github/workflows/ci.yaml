@@ -45,7 +45,7 @@ jobs:
         - name: Install golangci-lint
           uses: golangci/golangci-lint-action@v4
           with:
-            version: v1.59.2
+            version: v1.56.2
 
         - name: Run golangci-lint
           run: golangci-lint run src/product-catalog/...
@@ -72,9 +72,9 @@ jobs:
           uses: docker/build-push-action@v6
           with:
             context: src/product-catalog
-            file: Dockerfile
+            file: src/product-catalog/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/product-catalog-service:${{github.run_id}}
+            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/product-catalog:${{github.run_id}}
             build-args: |
               BUILD_VERSION=${{github.run_id}}
               BUILD_DATE=${{ github.event.head_commit.timestamp }}
