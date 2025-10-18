@@ -42,14 +42,12 @@ jobs:
           with:
             go-version: '1.22'
 
-        - name: Install golangci-lint
+        - name: Run golangci-lint
           uses: golangci/golangci-lint-action@v6
           with:
             version: v1.55.2
-
-        - name: Run golangci-lint
-          run: golangci-lint run src/product-catalog/...
-    
+            run: golangci-lint run 
+            working-dir: src/product-catalog
     
     docker:
         runs-on: ubuntu-latest
